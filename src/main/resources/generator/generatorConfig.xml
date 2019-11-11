@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <!--<context id="Mysql" targetRuntime="MyBatis3" defaultModelType="flat">-->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <plugin type="cn.eduplus.expends.mybatis.generator.MapperPlugin">
+            <property name="mappers" value="cn.eduplus.framework.dao.MyMapper"/>
+
+            <property name="targetPackage" value="cn.eduplus.bluewhale.settlement.service" />
+            <property name="baseServiceImplTargetProject" value="src/main/java" />
+
+            <property name="baseServiceImpl" value="BaseServiceImpl" />
+            <property name="baseServiceImplPackage" value="cn.eduplus.framework.service.impl.BaseServiceImpl" />
+
+
+            <property name="baseServiceTargetProject" value="../bluewhale-settlement-api/src/main/java" />
+            <property name="baseService" value="IBaseService" />
+            <property name="baseServicePackage" value="cn.eduplus.framework.service.IBaseService" />
+
+            <property name="enableCreateService" value="true" />
+            <property name="enableCreateController" value="true" />
+
+            <property name="baseController" value="BaseController" />
+            <property name="baseControllerPackage" value="cn.eduplus.bluewhale.common.controller.BaseController" />
+
+            <property name="controllerTargetPackage" value="cn.eduplus.bluewhale.settlement.controller" />
+            <property name="controllerTargetProject" value="../bluewhale-settlement-controller/src/main/java" />
+
+        </plugin>
+
+        <!-- 这里的type里写的是你的实现类的类全路径 -->
+        <commentGenerator type="cn.eduplus.expends.mybatis.comment.MybatisCommentGenerator" >
+            <property name="suppressAllComments" value="false"/>
+        </commentGenerator>
+
+
+        <!--<jdbcConnection driverClass="com.mysql.jdbc.Driver"-->
+                        <!--connectionURL="jdbc:mysql://rm-bp185liw135tf2tou.mysql.rds.aliyuncs.com:3306/xys_auth2_dev1?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true"-->
+                        <!--userId="xysauthdev1"-->
+                        <!--password="xysauthdev1@1234">-->
+        <!--</jdbcConnection>-->
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://rm-bp185liw135tf2tou.mysql.rds.aliyuncs.com:3306/xys_auth2_dev1?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true"
+                        userId="xysauthdev1"
+                        password="xysauthdev1@1234">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="com.example.domain.student" targetProject="../bluewhale-settlement-domain/src/main/java" >
+            <property name="rootClass" value="cn.eduplus.framework.domain.BaseDomain"/>
+            <property name="trimStrings" value="true" />
+            <property name="constructorBased" value="true" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mybatis" targetProject="src/main/resources"/>
+
+        <javaClientGenerator targetPackage="cn.eduplus.bluewhale.settlement.dao" targetProject="src/main/java"
+                             type="XMLMAPPER"/>
+
+        <table tableName="edu_compute_rule" domainObjectName="ComputeRule">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+        </table>
+
+    </context>
+</generatorConfiguration>

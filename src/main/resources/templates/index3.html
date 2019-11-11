@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="viewport" content="width=device-width" />
+		<meta charset="UTF-8"/>
+		<title>WebSocket客户端</title>
+	</head>
+
+	<body>
+		<div>
+			<input type="text" id="message" value="3"/>
+			<input type="button" id="btnConnection" value="连接" />
+			<input type="button" id="btnClose" value="关闭" />
+			<input type="button" id="btnSend" value="发送" />
+		</div>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script>
+            var socket;
+			$('#btnConnection').click(function () {
+                if(typeof(WebSocket) == "undefined") {
+                    console.log("您的浏览器不支持WebSocket");
+                }else {
+                    debugger;
+                    console.log("您的浏览器支持WebSocket");
+                    //实现化WebSocket对象，指定要连接的服务器地址与端口  建立连接
+                    //等同于socket = new WebSocket("ws://localhost:8083/checkcentersys/websocket/20");
+                    socket = new WebSocket("http://localhost:6316/websocket/3".replace("http", "ws"));
+//                    socket = new WebSocket("${basePath}websocket/${cid}".replace("http", "ws"));
+                    debugger;
+                    //打开事件
+                    socket.onopen = function () {
+                        console.log("Socket 已打开");
+                        //socket.send("这是来自客户端的消息" + location.href + new Date());
+                    };
+                    //获得消息事件
+                    socket.onmessage = function (msg) {
+                        console.log(msg.data);
+                        //发现消息进入    开始处理前端触发逻辑
+                        $("#message").val(msg.data);
+                    };
+                }
+            });
+
+            $('#btnClose').click(function () {
+                socket.close();
+			});
+            $('#btnSend').click(function () {
+                socket.send($("#message").val());
+            });
+		</script>
+	</body>
+
+</html>

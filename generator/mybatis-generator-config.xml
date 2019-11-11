@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <classPathEntry
+            location="generator/mysql-connector-java-5.1.38.jar" />
+    <context id="alipay-agent">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/database2"
+                        userId="root" password="123456">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="com.example.domain.student" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mybatis/student" targetProject="src/main/resources">
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.mapper.student" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+        <!--<table schema="public" tableName="mss_file_item" domainObjectName="FileItem">-->
+            <!--<property name="useActualColumnNames" value="true" />-->
+        <!--</table>-->
+
+        <!--<table schema="public" tableName="mss_spdb_merchant" domainObjectName="SpdbMerchant">-->
+            <!--<property name="useActualColumnNames" value="true" />-->
+        <!--<table schema="public" tableName="mss_spdb_merchant" domainObjectName="SpdbMerchant">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+
+        <!--<table schema="public" tableName="mss_agent" domainObjectName="Agent">-->
+        <!--<property name="useActualColumnNames" value="true" />-->
+        <!--</table>-->
+
+        <table schema="public" tableName="student" domainObjectName="Student">
+            <property name="useActualColumnNames" value="true" />
+        </table>
+
+
+        <!--<table schema="public" tableName="mss_finance_black" domainObjectName="FinanceBlack">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+        <!--<table schema="public" tableName="mss_finance_product" domainObjectName="FinanceProduct">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+
+    </context>
+</generatorConfiguration>
